@@ -1,8 +1,9 @@
-一个用Python编写的沙雕五子棋AI，以及一个简陋的GUI
+一个用Python编写的沙雕五子棋AI，以及一个简陋的GUI<br>
 
 ------
 
-* 运行：
+* 运行:<br>
+
 需要安装库PyQt5：
 > pip install PyQt5
 
@@ -14,7 +15,8 @@
 
 ------
 
-* 构建：
+* 构建：<br>
+
 安装pyinstaller：
 > pip install pyinstaller
 
@@ -26,25 +28,25 @@
 
 ------
 
-* 代码复用：
-chessboard.py ：棋盘类
-analyzer.py & analyer_base.py ：分析器
-game_base.py ：游戏类
-robot.py & score_base.py ：AI
-game_gui.py & main.qml：游戏界面
-其他的基本上都是调试用文件
+* 代码复用：<br>
+chessboard.py ：棋盘类<br>
+analyzer.py & analyer_base.py ：分析器<br>
+game_base.py ：游戏类<br>
+robot.py & score_base.py ：AI<br>
+game_gui.py & main.qml：游戏界面<br>
+其他的基本上都是调试用文件<br>
 
-类的依赖关系：
-Analyzer依赖Chessboard
-Game依赖Analyzer和ChessBoard
-Robot依赖Game、Analyzer和ChessBoard
+类的依赖关系：<br>
+Analyzer依赖Chessboard<br>
+Game依赖Analyzer和ChessBoard<br>
+Robot依赖Game、Analyzer和ChessBoard<br>
 
 ------
 
-* 已知问题：
-#####&emsp;4.1 太慢
-#####&emsp;4.2 有的时候似乎会卡死
-#####&emsp;4.2 <del>有的时候会变得智障</del>一直很智障
+* 已知问题：<br>
+4.1 太慢<br>
+4.2 有的时候似乎会卡死<br>
+4.2 <del>有的时候会变得智障</del>一直很智障<br>
 
 ------
 
