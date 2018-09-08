@@ -2,7 +2,7 @@
 
 ------
 
-#### 1. 运行：
+* 运行：
 需要安装库PyQt5：
 > pip install PyQt5
 
@@ -14,7 +14,7 @@
 
 ------
 
-#### 2. 构建：
+* 构建：
 安装pyinstaller：
 > pip install pyinstaller
 
@@ -26,7 +26,7 @@
 
 ------
 
-#### 3. 代码复用：
+* 代码复用：
 chessboard.py ：棋盘类
 analyzer.py & analyer_base.py ：分析器
 game_base.py ：游戏类
@@ -41,10 +41,10 @@ Robot依赖Game、Analyzer和ChessBoard
 
 ------
 
-#### 4. 已知问题：
-#####4.1 太慢
-#####4.2 有的时候似乎会卡死
-#####4.2 <del>有的时候会变得智障</del>一直很智障
+* 已知问题：
+#####&emsp;4.1 太慢
+#####&emsp;4.2 有的时候似乎会卡死
+#####&emsp;4.2 <del>有的时候会变得智障</del>一直很智障
 
 ------
 
