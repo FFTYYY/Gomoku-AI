@@ -1,50 +1,50 @@
-Ò»¸öÓÃPython±àĞ´µÄÉ³µñÎå×ÓÆåAI£¬ÒÔ¼°Ò»¸ö¼òÂªµÄGUI
+ä¸€ä¸ªç”¨Pythonç¼–å†™çš„æ²™é›•äº”å­æ£‹AIï¼Œä»¥åŠä¸€ä¸ªç®€é™‹çš„GUI
 
 ------
 
-####1. ÔËĞĞ£º
-ĞèÒª°²×°¿âPyQt5£º
+#### 1. è¿è¡Œï¼š
+éœ€è¦å®‰è£…åº“PyQt5ï¼š
 > pip install PyQt5
 
-ÔËĞĞÖ¸Áî£º
+è¿è¡ŒæŒ‡ä»¤ï¼š
 > python game_gui.py
 
-»òÕß£¨windowsÏÂ£©£º
+æˆ–è€…ï¼ˆwindowsä¸‹ï¼‰ï¼š
 >start_game
 
 ------
 
-####2. ¹¹½¨£º
-°²×°pyinstaller£º
+#### 2. æ„å»ºï¼š
+å®‰è£…pyinstallerï¼š
 > pip install pyinstaller
 
-Ö®ºóÔËĞĞÖ¸Áî
+ä¹‹åè¿è¡ŒæŒ‡ä»¤
 > pyinstaller -F -w game_gui.py -p analyzer.py -p analyzer_base.py -p chessboard.py -p debug_recursion.py -p game_base.py -p game_debug.py -p game_gui.py -p game_gui_debug.py -p robot.py -p score_base.py --hidden-import PyQt5.sip
 
-»òÕß£¨windowsÏÂ£©£º
+æˆ–è€…ï¼ˆwindowsä¸‹ï¼‰ï¼š
 >make_file
 
 ------
 
-####3. ´úÂë¸´ÓÃ£º
-chessboard.py £ºÆåÅÌÀà
-analyzer.py & analyer_base.py £º·ÖÎöÆ÷
-game_base.py £ºÓÎÏ·Àà
-robot.py & score_base.py £ºAI
-game_gui.py & main.qml£ºÓÎÏ·½çÃæ
-ÆäËûµÄ»ù±¾ÉÏ¶¼ÊÇµ÷ÊÔÓÃÎÄ¼ş
+#### 3. ä»£ç å¤ç”¨ï¼š
+chessboard.py ï¼šæ£‹ç›˜ç±»
+analyzer.py & analyer_base.py ï¼šåˆ†æå™¨
+game_base.py ï¼šæ¸¸æˆç±»
+robot.py & score_base.py ï¼šAI
+game_gui.py & main.qmlï¼šæ¸¸æˆç•Œé¢
+å…¶ä»–çš„åŸºæœ¬ä¸Šéƒ½æ˜¯è°ƒè¯•ç”¨æ–‡ä»¶
 
-ÀàµÄÒÀÀµ¹ØÏµ£º
-AnalyzerÒÀÀµChessboard
-GameÒÀÀµAnalyzerºÍChessBoard
-RobotÒÀÀµGame¡¢AnalyzerºÍChessBoard
+ç±»çš„ä¾èµ–å…³ç³»ï¼š
+Analyzerä¾èµ–Chessboard
+Gameä¾èµ–Analyzerå’ŒChessBoard
+Robotä¾èµ–Gameã€Analyzerå’ŒChessBoard
 
 ------
 
-####4. ÒÑÖªÎÊÌâ£º
-#####&emsp;4.1 Ì«Âı
-#####&emsp;4.2 ÓĞµÄÊ±ºòËÆºõ»á¿¨ËÀ
-#####&emsp;4.2 <del>ÓĞµÄÊ±ºò»á±äµÃÖÇÕÏ</del>Ò»Ö±ºÜÖÇÕÏ
+#### 4. å·²çŸ¥é—®é¢˜ï¼š
+#####&emsp;4.1 å¤ªæ…¢
+#####&emsp;4.2 æœ‰çš„æ—¶å€™ä¼¼ä¹ä¼šå¡æ­»
+#####&emsp;4.2 <del>æœ‰çš„æ—¶å€™ä¼šå˜å¾—æ™ºéšœ</del>ä¸€ç›´å¾ˆæ™ºéšœ
 
 ------
 
