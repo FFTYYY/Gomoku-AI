@@ -1,3 +1,7 @@
+'''
+	五子棋游戏的界面
+'''
+
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtQuick import *
@@ -5,11 +9,15 @@ from game_base import Game
 from robot import Robot
 import debug as deb
 import time
+import pdb
 
 the_time = 0
 the_cont = 0
 
 class Liaison(QObject):
+	'''
+		即联络员，在qml和py之间传递数据
+	'''
 
 	def __init__(self,parent = None,n = 15,m = 15):
 		super().__init__(parent = parent)
@@ -51,6 +59,7 @@ class Liaison(QObject):
 
 	@pyqtSlot(result = QPoint)
 	def get_robot_move(self):
+
 		rb = Robot(self._game)
 		res = rb.get_a_move()
 		return QPoint(res[0],res[1])
@@ -80,7 +89,6 @@ class Liaison(QObject):
 path = 'main.qml'
 app = QGuiApplication([])
 view = QQuickView()
-view.setTitle("五子棋")
 lia = Liaison(n = 15,m = 15)
 
 cont = view.rootContext()

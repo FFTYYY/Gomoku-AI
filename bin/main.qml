@@ -1,3 +1,8 @@
+/*
+	五子棋游戏的界面
+	有一个名为lia的联络员在py和qml间传递数据
+*/
+
 import QtQuick 2.9
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
@@ -41,16 +46,19 @@ Rectangle
 		return player_char[now] == 0
 	}
 
+	property bool rob_moving : false
 	function ask_move()
 	{
 		//while(!can.done);
 
+		rob_moving = true
         can.requestPaint()
 		if(!now_is_human())
 		{
 			var ret = lia.get_robot_move()
 			move(ret.x , ret.y)
 		}
+		rob_moving = false
 		//else let the mousearea do the work
 	}
 
@@ -86,6 +94,9 @@ Rectangle
 	function win(winner)
 	{
 		ma.visible = false
+		should_move = 0
+		rob_moving = true
+		tim.repeat = false
 
 		win_text.visible = true
 		win_text.text = "Winner : Player" + String(winner)
@@ -264,13 +275,20 @@ Rectangle
 
     Timer
     {
+    	id: tim
+
         running: true
-        interval: 1000 / 60
+        interval: 100
         repeat: true
 
         onTriggered:
         {
             can.requestPaint()
+
+            if((!rob_moving) && (!now_is_human()))
+            {
+            	should_move += 1
+            }
 
             if(should_move > 0)
             {
@@ -278,7 +296,7 @@ Rectangle
                 win_text.text = "caculating..."
             }
 
-            if(should_move >= 10)
+            if(should_move >= 5)
             {//给他绘制的时间
 
                 //can.requestPaint()

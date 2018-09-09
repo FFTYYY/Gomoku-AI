@@ -2,14 +2,27 @@
 
 '''
 	棋盘
-	n，m分别表示行数和列数
-	-1表示空，0表示黑棋，1表示白棋
 '''
 
 import copy
 
 class ChessBoard:
-	
+	'''
+		用来表示一个矩形棋盘（矩阵）的类
+		n，m分别表示行数和列数
+		棋盘的每个元素，-1表示空，0和1分别表示先后手的棋子
+	'''
+
+	def __init__(self,n,m):
+		'''
+			初始化
+			
+			n,m：期刊的行数、列数
+		'''
+		self._n = n
+		self._m = m
+		self._data = [[-1] * m for i in range(n)]
+
 	@property
 	def n(self):
 		return self._n
@@ -30,11 +43,6 @@ class ChessBoard:
 			self._m = 0
 		else:
 			self._m = len(val[0])
-
-	def __init__(self,n,m):
-		self._n = n
-		self._m = m
-		self._data = [[-1] * m for i in range(n)]
 
 	def __getitem__(self,k):
 		return self._data[k]

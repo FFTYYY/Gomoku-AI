@@ -1,4 +1,6 @@
-#coding:utf-8
+'''
+	包含游戏类Game
+'''
 
 from chessboard import ChessBoard
 from analyzer import Analyzer
@@ -9,23 +11,50 @@ import debug as deb
 class Game:
 
 	def __init__(self,n = 15,m = 15):
-		self._cb = ChessBoard(n,m)
-		self._now = 0
-		self._bad = [ChessBoard(n,m) for _i in [0,1]]
-		self._n = 0
-		self._m = 0
-		self._ana = Analyzer(self._cb , nexa_range = 1)
-		self._got_winner = False
-		self._last_move = None			#上一次走的位置
-		self._do_check_winner = True	#是否检查胜利（在机器尝试的时候不应该检查胜利）
-		self._out_winner_info = True
-		self._now_steps = 0
+		'''
+			初始化一个游戏
 
+			n,m：棋盘的长宽
+		'''
+
+		#棋盘
+		self._cb = ChessBoard(n,m)
+
+		#当前先手
+		self._now = 0
+
+		#禁止走的位置，对于每个玩家而言是一个棋盘，棋盘上非-1的位置即是不能走的
+		self._bad = [ChessBoard(n,m) for _i in [0,1]]
+
+		#棋盘长宽
+		self._n = n
+		self._m = m
+
+		#分析器
+		self._ana = Analyzer(self._cb , nexa_range = 1)
+
+		#是否已经有人胜利了
+		self._got_winner = False
+
+		#是否检查胜利
+		self._do_check_winner = True	
+		#是否在控制台输出胜利信息
+		self._out_winner_info = True
+
+		#当前走了多少步
+		self._now_steps = 0
+		#之前走过的所有步骤
 		self._last_moves = []
+		#上一次走的位置
+		self._last_move = None
+
 		
 
 	def good(self,i,j,now = -1):
-		'''is (i,j) ok? (now = -1 意味着now默认为self._now)'''
+		'''
+			走(i,j)是可以的吗？
+			 (now = -1 意味着now默认为self._now)
+		'''
 		if(now == -1):
 			now = self._now
 		flag = True
@@ -34,14 +63,13 @@ class Game:
 		flag = flag and self._bad[now][i][j] < 0
 		return flag
 
-	def get_analyzer(self):
-		return self._ana
-
-	def check_winner(self):
-		return self._ana.ask_number("五",self._now) > 0
-
 	def move(self,i,j):
-		'''前提是(i,j)是合法的，这个函数不会做检查'''
+		'''
+			在(i,j)这个位置落子
+			前提是(i,j)是合法的，这个函数不会做检查
+
+			i,j：落子位置
+		'''
 
 		self._cb[i][j] = self._now
 
@@ -59,6 +87,10 @@ class Game:
 		self._now ^= 1
 
 	def unmove(self):
+		'''
+			悔棋
+		'''
+
 		self._now ^= 1
 
 		self._got_winner = False
@@ -78,6 +110,12 @@ class Game:
 		self._now_steps -= 1
 		
 		self._cb[i][j] = -1
+
+	def get_analyzer(self):
+		return self._ana
+
+	def check_winner(self):
+		return self._ana.ask_number("五",self._now) > 0
 
 	def win(self):
 		if(not self._do_check_winner):

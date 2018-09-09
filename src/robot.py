@@ -1,3 +1,7 @@
+'''
+	五子棋机器人Robot类
+'''
+
 from chessboard import ChessBoard
 import copy
 import score_base
@@ -5,11 +9,10 @@ import debug as deb
 import time
 import math
 import random
+import pdb
 
 '''
-	TODO:
-	现在的问题是，如果接下来几步双方都可以走出5（即都有四，但是实际上某一方是有绝对优势的），那么他不会认为自己的5是绝对优势。
-	方案：在走出绝对优势后，立刻结束搜索。
+	TODO:太菜，需要更新dfs的剪枝策略
 '''
 
 deal_step_val = 3
@@ -26,24 +29,30 @@ remain_num = 15
 
 
 def get_inv(now_time):
-		global remain_num
-		remain_num = 20 - (now_time // 4)
-		if(remain_num < 10):
-			remain_num = 10
+	'''
+		调整一些全局变量
+		其实不该是全局变量
+		应该改改
 
-		global deal_range
-		deal_range = 1 + (now_time // 15)
-		if(deal_range > 3):
-			deal_range = 3
+		now_time是当前步数
+	'''
+	global remain_num
+	remain_num = 20 - (now_time // 4)
+	if(remain_num < 10):
+		remain_num = 10
+
+	global deal_range
+	deal_range = 1 + (now_time // 15)
+	if(deal_range > 3):
+		deal_range = 3
 
 _now_time = 0
 
 def score(game,now = -1):
 	'''
-		在落子后以落子为当前方进行局面评估
+		给棋盘打分
 
-		判断该当前棋盘上哪一方更占优势
-		cb表示当前棋盘，now表示当前先手（刚刚落子）
+		now表示当前先手（即将落子）方，返回的是一个元组，表示双方的分数
 	'''
 
 	if(now < 0):
@@ -65,21 +74,47 @@ def score(game,now = -1):
 	return (res[0],res[1])
 
 def get_scr(a,now):
+	'''
+		获得当前方分数
+
+		a是score()返回的元组
+		now是当前方
+	'''
 	return a[now] - a[now ^ 1]
+
 def get_score(game):
+	'''
+		给一个游打分
+	'''
 	scr = score(game)
 	scr = get_scr(scr,game.now)
 	return scr
 
 def get_sons(game):
-	ret = [p for p in game._ana.get_nexa() if (game.good(p[0],p[1]))]
+	'''
+		获得当前合法边界落子点集合
+		game表示游戏
+		用来当做机器人的尝试点
+	'''
+	#pdb.set_trace()
+
+	ret = [p for p in game.get_analyzer().get_nexa() if (game.good(p[0],p[1]))]
 	deb.cont3 += len(ret)
+
+	if(deb.flag4):
+		print (ret)
 	return ret
 
 
 #deber = deb.deber
 
 def dfs(game,depth = 0):
+	'''
+		深度优先搜索
+
+		game表示游戏
+		depth表示当前深度，初始为0
+	'''
 
 	'''
 	Debug
@@ -197,18 +232,35 @@ def dfs(game,depth = 0):
 	return (res,res_step)
 
 class Robot:
+	'''
+		机器人类
+
+		因为数据都是在分析器中记录的，所以实际上可以对每一个游戏局面都创建一个新的机器人
+	'''
 
 	def __init__(self,game):
+		'''
+			机器人的初始化
 
+			game表示这个机器人的游戏
+		'''
 		self._game = game
 		self._root = None
 		self._desicion = (0,0)
 
 
 	def get_env(self):
+		'''
+			初始化全局变量
+			我也不知道我在写些什么
+			TODO
+		'''
 		get_inv(self._game.now_time)
 
 	def get_a_move(self):
+		'''
+			请求机器人获得下一步走法
+		'''
 
 		self.get_env()
 

@@ -56,11 +56,11 @@ def print_cases_dict(ana):
 				print (p)
 
 
-flag1 = False
+flag1 = True	#game_gui debug
 flag2 = False
 flag3 = False
-flag4 = False
-flag5 = False #analyzer.py : move()
+flag4 = False	#robot debug
+flag5 = False 	#analyzer.py : move()
 flag6 = False
 flag7 = False
 cont1 = 0	#cases_add()

@@ -1,4 +1,7 @@
-
+'''
+	debug版本的game_gui
+	就是在初始化的时候预先走一些棋子而已（用来调试一些特殊情况）
+'''
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtQuick import *
