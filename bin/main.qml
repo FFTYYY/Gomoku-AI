@@ -27,7 +27,7 @@ Rectangle
 	property variant color_white_try_bak: "rgba(255,255,255,0.5)"
 	property variant color_black_try_bak: "rgba(0,0,0,0.5)"
 
-	property variant player_char: [0,1]			//0 : man , 1 : robit
+	property variant player_char: [lia.ask_player(0),lia.ask_player(1)]			//0 : man , 1 : robit
 	property int now: lia.ask_now()
 
 	visible: true

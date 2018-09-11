@@ -37,9 +37,9 @@ def get_inv(now_time):
 		now_time是当前步数
 	'''
 	global remain_num
-	remain_num = 20 - (now_time // 4)
-	if(remain_num < 10):
-		remain_num = 10
+	remain_num = 20 - (now_time // 2)
+	if(remain_num < 7):
+		remain_num = 7
 
 	global deal_range
 	deal_range = 1 + (now_time // 15)
@@ -185,7 +185,7 @@ def dfs(game,depth = 0):
 		if(the_rat < 1):
 			the_rat = 1 / the_rat
 
-		if((the_rat < 0 or the_rat >= 1.5) and the_dif > 5000):
+		if((the_rat < 0 or the_rat >= 1.5) and the_dif > 2000):
 			to_cut = _i
 			if(depth == 0 and deb.flag2):
 				print ("the_rat = %d" % (the_rat))

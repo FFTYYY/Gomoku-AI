@@ -7,6 +7,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtQuick import *
 from game_base import Game
 from robot import Robot
+import configparser
 import debug as deb
 import time
 import pdb
@@ -23,6 +24,18 @@ class Liaison(QObject):
 		super().__init__(parent = parent)
 		self._game = Game(n,m)
 		self._game.out_winner_info = False
+
+		self.config = configparser.ConfigParser()
+		self.config.read("config.ini")
+
+		self._palyer_0 = int(self.config.get("init_val","玩家0"))
+		self._palyer_1 = int(self.config.get("init_val","玩家1"))
+
+	@pyqtSlot(int,result = int)
+	def ask_player(self,a):
+		if a == 0:
+			return self._palyer_0
+		return self._palyer_1
 
 	@pyqtSlot(int,int,result = int)
 	def ask_cb(self,i,j):
@@ -42,6 +55,9 @@ class Liaison(QObject):
 			print ("cont1 = %d" % (deb.cont1))
 			print ("cont2 = %d" % (deb.cont2))
 			print ("cont3 = %d" % (deb.cont3))
+
+			print ()
+			print ("move = {0}".format( (i,j) ))
 
 			print ("------------")
 			print ()
@@ -89,13 +105,13 @@ class Liaison(QObject):
 path = 'main.qml'
 app = QGuiApplication([])
 view = QQuickView()
-lia = Liaison(n = 15,m = 15)
+view.setTitle("Gomoku")
 
+lia = Liaison(n = 15,m = 15)
 cont = view.rootContext()
 cont.setContextProperty("lia", lia)
 
-view.engine().quit.connect(app.quit)
-
 view.setSource(QUrl(path))
+
 view.show()
 app.exec_()
