@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['game_gui.py'],
-             pathex=['analyzer.py', 'analyzer_base.py', 'chessboard.py', 'debug_recursion.py', 'game_base.py', 'game_debug.py', 'game_gui.py', 'game_gui_debug.py', 'robot.py', 'score_base.py', 'E:\\Programming\\Projects\\UpLoaded\\Gomoku-AI\\src'],
+             pathex=['analyzer.py', 'analyzer_base.py', 'chessboard.py', 'debug_recursion.py', 'game_base.py', 'game_debug.py', 'game_gui.py', 'game_gui_debug.py', 'robot.py', 'score_base.py', 'E:\\Programming\\Projects\\Doing\\Gomoku-AI\\src'],
              binaries=[],
              datas=[],
              hiddenimports=['PyQt5.sip'],
